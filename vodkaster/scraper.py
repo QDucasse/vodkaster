@@ -36,7 +36,7 @@ def get_year(soup):
 # Director
 def get_director(soup):
     director = soup.find("div", class_="details").find("a").get_text()
-    components = director.split(" ")
+    components = director.split(" ", 1)
     return components[1] + " " + components[0]
 
 # Duration
