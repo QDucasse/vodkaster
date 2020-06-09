@@ -23,7 +23,11 @@ def get_title(soup):
 
 # Original Title
 def get_og_title(soup):
-    return soup.find("div", class_="details").get_text().split('Titre original :')[1].split('\n')[0].strip()
+    og_title = soup.find("div", class_="details").get_text().split('Titre original :')[1].split('\n')[0].strip()
+    if og_title is None:
+        return get_title(soup)
+    else:
+        return og_title
 
 # Year
 def get_year(soup):
