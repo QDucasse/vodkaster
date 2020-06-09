@@ -18,15 +18,9 @@ def set_env():
 # Find a workbook by name and open the first sheet
 # Make sure you use the right name here.
 def open_sheet(client):
-    return client.open("Test-Vodkaster").sheet1
+    return client.open("Films/séries").sheet1
 
 def add_row(sheet,year,title,director,country,genre,duration):
     row = [year,title,director,country,genre,duration]
     new_line = len(sheet.get_all_values()) + 1
     sheet.insert_row(row,new_line)
-
-if __name__ == "__main__":
-    client = set_env()
-    sheet = open_sheet()
-
-    add_row(sheet,"a","b","c","d","e","f")
