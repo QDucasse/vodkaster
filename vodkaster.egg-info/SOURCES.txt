@@ -1,0 +1,9 @@
+README.md
+setup.py
+vodkaster/__init__.py
+vodkaster/scraper.py
+vodkaster/writer.py
+vodkaster.egg-info/PKG-INFO
+vodkaster.egg-info/SOURCES.txt
+vodkaster.egg-info/dependency_links.txt
+vodkaster.egg-info/top_level.txt

@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: vodkaster
+Version: 0.1.0
+Summary: PyTorch and Brevitas trainer
+Home-page: https://github.com/QDucasse/vodkaster
+Author: Quentin Ducasse
+Author-email: quentin.ducasse@ensta-bretagne.org
+License: MIT
+Description: Vodkaster movie scraper
+        
+Keywords: scraper movies
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: Apple :: macOS
