@@ -8,6 +8,9 @@
 import requests
 from bs4 import BeautifulSoup
 
+from vodkaster.writer  import *
+from vodkaster.scraper import *
+
 # Get the url content
 def create_soup(url):
     # Set headers
@@ -48,6 +51,9 @@ def get_director(soup):
     if director is None:
         director = ""
         return director
+    # No first name e.g. Costa-Gravas
+    elif len(director.split(" ", 1)) == 1:
+        return director
     else:
         components = director.split(" ", 1)
         # Places family name then first name
@@ -87,5 +93,8 @@ def get_country(soup):
     return country
 
 if __name__ == "__main__":
-    soup = create_soup("https://www.vodkaster.com/films/seven/63655")
-    print(get_genre(soup))
+    # soup = create_soup("https://www.vodkaster.com/films/seven/63655")
+    # print(get_genre(soup))
+
+    str = "Costa-Gravas"
+    print(str.split(" ",1))
