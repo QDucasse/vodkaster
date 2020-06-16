@@ -6,35 +6,52 @@
 # quentin.ducasse@ensta-bretagne.org
 
 import tkinter as tk
+from tkinter import *
 from vodkaster.writer  import *
 from vodkaster.scraper import *
 
-window = tk.Tk()
-window.title("Vodkaster Scraper")
 
-tk.Label(window, text="URL").grid(row=0)
+class GUI:
+    def __init__(self):
+        self.window = tk.Tk()
+        self.window.title("Vodkaster Scraper")
 
-entry = tk.Entry(window)
-entry.grid(row=0, column=1)
+        self.label_url = tk.Label(self.window, text="URL").grid(row=0)
 
+        self.entry_url = tk.Entry(self.window)
+        self.entry_url.grid(row=0, column=1)
 
-def process_url():
-    url = entry.get()
-    # Scrape
-    soup = create_soup(url)
-    title = get_title(soup)
-    # og_title = get_og_title(soup)
-    year = get_year(soup)
-    director = get_director(soup)
-    duration = get_duration(soup)
-    genre = get_genre(soup)
-    country = get_country(soup)
-    # Write
-    client = set_env()
-    sheet = open_sheet(client)
-    add_row(sheet,year,title,director,country,genre,duration)
+        self.label_result = tk.Label(self.window, text="Résultat").grid(row=2)
 
-button = tk.Button(window, text="ZEBI", command=process_url)
-button.grid(row=1, column=1)
+        self.entry_result = tk.Entry(self.window)
+        self.entry_result.grid(row=2, column=1)
 
-window.mainloop()
+        self.button = tk.Button(self.window, text="ZEBI", command=self.process_url)
+        self.button.grid(row=1, column=1)
+
+        self.window.mainloop()
+
+    def process_url(self):
+        url = self.entry_url.get()
+        # Scrape
+        soup = create_soup(url)
+        title = get_title(soup)
+        # og_title = get_og_title(soup)
+        year = get_year(soup)
+        director = get_director(soup)
+        duration = get_duration(soup)
+        genre = get_genre(soup)
+        country = get_country(soup)
+        # Write
+        client = set_env()
+        sheet = open_sheet(client)
+        res = add_row(sheet,year,title,director,country,genre,duration)
+        if res:
+            self.entry_result.delete(0,END)
+            self.entry_result.insert(0,"Film ajouté!")
+        else:
+            self.entry_result.delete(0,END)
+            self.entry_result.insert(0,"Film déjà dans la liste!")
+
+if __name__ == "__main__":
+    gui = GUI()

@@ -20,7 +20,18 @@ def set_env():
 def open_sheet(client):
     return client.open("Films/séries").sheet1
 
+def already_in(sheet,title):
+    res=False
+    rows = sheet.get_all_values()
+    for row in rows:
+        res = (row[1] == title)
+    return(res)
+
 def add_row(sheet,year,title,director,country,genre,duration):
-    row = [year,title,director,country,genre,duration]
-    new_line = len(sheet.get_all_values()) + 1
-    sheet.insert_row(row,new_line)
+    if not(already_in(sheet,title)):
+        row = [year,title,director,country,genre,duration]
+        new_line = len(sheet.get_all_values()) + 1
+        sheet.insert_row(row,new_line)
+        return True
+    else:
+        return False
