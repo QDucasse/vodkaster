@@ -23,9 +23,8 @@ def open_sheet(client):
 def already_in(sheet,title):
     res=False
     rows = sheet.get_all_values()
-    for row in rows:
-        res = (row[1] == title)
-    return(res)
+    titles = [row[1] for row in rows]
+    return (title in titles)
 
 def add_row(sheet,year,title,director,country,genre,duration):
     if not(already_in(sheet,title)):
